@@ -1,0 +1,22 @@
+AUDIO DE LA INVITACIÓN — XV YARISSA
+
+Coloca aquí estos tres archivos MP3, respetando exactamente los nombres:
+
+1) mariposas-chimes.mp3
+   Descarga desde Pixabay: Christmas Chimes Transitions (ID 264369).
+   Se reproduce durante el vuelo inicial de las mariposas y se corta justo antes del destello.
+
+2) destello-whoosh.mp3
+   Descarga desde Pixabay: Christmas Whoosh 1 (ID 275403).
+   Entra sincronizado con el destello mágico, aproximadamente a los 6.12 segundos de la animación.
+
+3) cree-y-atrevete.mp3
+   Archivo de audio que debes aportar tú desde una fuente en la que tengas derecho de uso.
+   Se reproduce cuando termina la apertura del sobre y continúa en bucle como música de fondo.
+
+IMPORTANTE SOBRE MÓVILES:
+Los navegadores no permiten garantizar sonido automático desde la primera carga. Por eso aparece un pequeño botón «Toca para activar el sonido». La persona debe tocarlo durante la animación para habilitar los efectos. Después, el whoosh y la música principal se reproducen automáticamente en sus momentos correspondientes. Si no se activa el sonido durante la animación, la música principal seguirá pudiendo comenzar al abrir el sobre.
+
+Volúmenes iniciales: campanillas 55%, whoosh 82%, canción 38%. Puedes ajustarlos en script.js.
+
+No se incluyen los audios dentro del ZIP: debes descargarlos y añadirlos aquí.
