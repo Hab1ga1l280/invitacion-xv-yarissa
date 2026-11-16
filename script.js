@@ -207,9 +207,22 @@ const RSVP_TOKEN = new URLSearchParams(window.location.search).get('token') || '
   let cupo = 0;
   let cerrado = false;
 
-  function mostrarMensaje(texto, error) {
-    messageEl.textContent = texto || '';
-    messageEl.classList.toggle('error', !!error);
+  function mostrarMensaje(texto, error = false, nota = '') {
+    messageEl.replaceChildren();
+    messageEl.classList.toggle('error', error);
+
+    // Mensaje principal
+    messageEl.appendChild(document.createTextNode(texto || ''));
+
+    // Nota secundaria, en una línea independiente
+    if (nota && !error) {
+        const notaEl = document.createElement('span');
+        notaEl.className = 'rsvp-note';
+        notaEl.textContent = nota;
+        messageEl.appendChild(notaEl);
+    }
+}
+  
   }
   function crearCampos(cantidad, nombresPrevios = []) {
     namesEl.replaceChildren();
@@ -296,9 +309,21 @@ const RSVP_TOKEN = new URLSearchParams(window.location.search).get('token') || '
     }
     submitEl.disabled = true; submitEl.textContent = 'Guardando…'; mostrarMensaje('');
     try {
+
+      
       const resultado = await llamarAPI({ action: 'guardarRespuesta', decision: decision.value, nombres });
-      mostrarMensaje(resultado.mensaje || 'Tu respuesta quedó guardada.', false);
-      submitEl.textContent = 'Respuesta guardada'; submitEl.disabled = false;
+
+const nota = decision.value === 'asistire'
+    ? 'Nota: Si tus planes cambian o necesitas modificar tus acompañantes, puedes editar tu respuesta aquí mismo.'
+    : 'Nota: Si tus planes cambian, puedes editar tu respuesta aquí mismo.';
+
+mostrarMensaje(resultado.mensaje || 'Tu respuesta quedó guardada.', false, nota);
+
+submitEl.textContent = 'Respuesta guardada';
+submitEl.disabled = false;
+
+
+      
       if (decision.value === 'no_asistire') { namesEl.replaceChildren(); panelEl.hidden = true; }
     } catch (error) {
       mostrarMensaje(error.message || 'No pudimos guardar tu respuesta. Intenta nuevamente.', true);
