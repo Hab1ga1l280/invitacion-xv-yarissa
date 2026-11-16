@@ -287,6 +287,9 @@ const RSVP_TOKEN = new URLSearchParams(window.location.search).get('token') || '
 
   form.addEventListener('submit', async event => {
     event.preventDefault(); if (cerrado) return;
+
+
+    
     const nota = decision.value === 'asistire'
     ? 'Nota: Si tus planes cambian o necesitas modificar tus acompañantes, puedes editar tu respuesta aquí mismo.'
     : 'Nota: Si tus planes cambian, puedes editar tu respuesta aquí mismo.';
@@ -297,7 +300,9 @@ const notaEl = document.createElement('span');
 notaEl.className = 'rsvp-note';
 notaEl.textContent = nota;
 
-document.getElementById('rsvpMessage').appendChild(notaEl);
+messageEl.appendChild(notaEl);
+
+    
     
 mostrarMensaje(resultado.mensaje || 'Tu respuesta quedó guardada.', false);
 
