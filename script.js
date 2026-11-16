@@ -298,22 +298,18 @@ const RSVP_TOKEN = new URLSearchParams(window.location.search).get('token') || '
 
   form.addEventListener('submit', async event => {
     event.preventDefault(); if (cerrado) return;
-    const decision = form.querySelector('input[name="decision"]:checked');
-    if (!decision) { mostrarMensaje('Selecciona si podrás acompañarnos.', true); return; }
-    let nombres = [];
-    if (decision.value === 'asistire') {
-      nombres = [...namesEl.querySelectorAll('input')].map(input => input.value.trim().replace(/\s+/g, ' '));
-      if (!nombres.length || nombres.length > cupo || nombres.some(nombre => !nombre)) {
-        mostrarMensaje('Completa todos los nombres y respeta tu cupo autorizado.', true); return;
-      }
-    }
-    submitEl.disabled = true; submitEl.textContent = 'Guardando…'; mostrarMensaje('');
-    try {
-      const resultado = await llamarAPI({ action: 'guardarRespuesta', decision: decision.value, nombres });
-      const nota = decision.value === 'asistire'
-    ? n/'Nota: Si tus planes cambian o necesitas modificar tus acompañantes, puedes editar tu respuesta aquí mismo.'
-    : n/'Nota: Si tus planes cambian, puedes editar tu respuesta aquí mismo.';
+    const nota = decision.value === 'asistire'
+    ? 'Nota: Si tus planes cambian o necesitas modificar tus acompañantes, puedes editar tu respuesta aquí mismo.'
+    : 'Nota: Si tus planes cambian, puedes editar tu respuesta aquí mismo.';
 
+mostrarMensaje(resultado.mensaje || 'Tu respuesta quedó guardada.', false);
+
+const notaEl = document.createElement('span');
+notaEl.className = 'rsvp-note';
+notaEl.textContent = nota;
+
+document.getElementById('rsvpMessage').appendChild(notaEl);
+    
 mostrarMensaje(resultado.mensaje || 'Tu respuesta quedó guardada.', false);
 
 const notaEl = document.createElement('span');
