@@ -311,8 +311,8 @@ const RSVP_TOKEN = new URLSearchParams(window.location.search).get('token') || '
     try {
       const resultado = await llamarAPI({ action: 'guardarRespuesta', decision: decision.value, nombres });
       const nota = decision.value === 'asistire'
-    ? 'Nota: Si tus planes cambian o necesitas modificar tus acompañantes, puedes editar tu respuesta aquí mismo.'
-    : 'Nota: Si tus planes cambian, puedes editar tu respuesta aquí mismo.';
+    ? n/'Nota: Si tus planes cambian o necesitas modificar tus acompañantes, puedes editar tu respuesta aquí mismo.'
+    : n/'Nota: Si tus planes cambian, puedes editar tu respuesta aquí mismo.';
 
 mostrarMensaje(resultado.mensaje || 'Tu respuesta quedó guardada.', false);
 
