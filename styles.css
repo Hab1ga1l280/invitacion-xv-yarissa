@@ -948,15 +948,14 @@
         opacity: .48;
         cursor: not-allowed
     }
-
-    .rsvp-message {
-        text-align: center;
-        min-height: 1.3em;
-        margin: 15px 0 0;
-        color: var(--gold);
-        font-size: .72rem;
-        line-height: 1.6
-    }
+.rsvp-message .rsvp-note {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.85em;
+    font-weight: normal;
+    line-height: 1.5;
+    opacity: 0.85;
+}
 
     .rsvp-message.error {
         color: #a33e45
