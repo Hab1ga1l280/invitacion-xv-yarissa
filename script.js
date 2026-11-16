@@ -297,12 +297,13 @@ const RSVP_TOKEN = new URLSearchParams(window.location.search).get('token') || '
     submitEl.disabled = true; submitEl.textContent = 'Guardando…'; mostrarMensaje('');
     try {
       const resultado = await llamarAPI({ action: 'guardarRespuesta', decision: decision.value, nombres });
-      mostrarMensaje(resultado.mensaje || 'Tu respuesta quedó guardada.', false);
+      mostrarMensaje((resultado.mensaje || 'Tu respuesta quedó guardada.') + '<span style="display:block;font-size:0.85em;margin-top:6px;opacity:0.85;font-weight:normal;">Nota: Si tus planes cambian o necesitas modificar tus acompañantes, puedes editar tu respuesta aquí mismo.</span>', false);
       submitEl.textContent = 'Respuesta guardada'; submitEl.disabled = false;
       if (decision.value === 'no_asistire') { namesEl.replaceChildren(); panelEl.hidden = true; }
     } catch (error) {
       mostrarMensaje(error.message || 'No pudimos guardar tu respuesta. Intenta nuevamente.', true);
       submitEl.disabled = false; submitEl.textContent = 'Guardar mi respuesta';
     }
+
   });
 })();
