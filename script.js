@@ -272,7 +272,7 @@ const RSVP_TOKEN = new URLSearchParams(window.location.search).get('token') || '
   (async () => {
     try {
       const datos = await llamarAPI({ action: 'obtenerEstado' });
-      cupo = Number(datos.cupo); familyEl.textContent = 'Familia ' + datos.familia;
+      cupo = Number(datos.cupo); familyEl.textContent = datos.familia;
       cupoEl.textContent = String(cupo);
       cupoTextEl.textContent = cupo === 1 ? 'lugar reservado para ti' : 'lugares reservados para ti';
       llenarOpciones();
