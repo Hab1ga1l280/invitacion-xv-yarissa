@@ -208,20 +208,9 @@ const RSVP_TOKEN = new URLSearchParams(window.location.search).get('token') || '
   let cerrado = false;
 
  function mostrarMensaje(texto, error = false) {
-    messageEl.textContent = '';
+    messageEl.textContent = texto;
     messageEl.classList.toggle('error', error);
-
-    const nota = texto.indexOf('<span');
-
-    if (nota !== -1 && !error) {
-        const mensajePrincipal = texto.substring(0, nota);
-        const notaHTML = texto.substring(nota);
-
-        messageEl.textContent = mensajePrincipal;
-        messageEl.insertAdjacentHTML('beforeend', notaHTML);
-    } else {
-        messageEl.textContent = texto;
-    }
+}
 }
   
   function crearCampos(cantidad, nombresPrevios = []) {
