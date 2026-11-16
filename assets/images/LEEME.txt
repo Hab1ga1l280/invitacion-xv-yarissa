@@ -1,0 +1,6 @@
+IMÁGENES DE LA INVITACIÓN
+- flor-ornamental-dorado.png: ornamento floral dorado principal.
+- flor-blanca-dorada.png: flores blancas con detalles dorados.
+Ambas imágenes PNG conservan su fondo transparente y se posicionan mediante CSS.
+Coloca aquí también tus fotografías cuando las tengas:
+foto-principal.jpg, iglesia.jpg, recepcion.jpg, foto-01.jpg, foto-02.jpg, foto-03.jpg y foto-04.jpg.
