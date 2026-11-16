@@ -956,12 +956,13 @@
     font-size: .72rem;
     line-height: 1.6
 }
+
 .rsvp-message .rsvp-note {
     display: block;
-    margin-top: 8px;
-    font-size: 0.75em;
+    margin-top: 10px;
+    font-size: 0.60rem;
     font-weight: normal;
-    line-height: 1.5;
+    line-height: 1.6;
     opacity: 0.85;
 }
 
