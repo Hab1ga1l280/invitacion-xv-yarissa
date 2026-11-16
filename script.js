@@ -207,10 +207,23 @@ const RSVP_TOKEN = new URLSearchParams(window.location.search).get('token') || '
   let cupo = 0;
   let cerrado = false;
 
-  function mostrarMensaje(texto, error) {
-    messageEl.textContent = texto || '';
-    messageEl.classList.toggle('error', !!error);
-  }
+ function mostrarMensaje(texto, error = false) {
+    messageEl.textContent = '';
+    messageEl.classList.toggle('error', error);
+
+    const nota = texto.indexOf('<span');
+
+    if (nota !== -1 && !error) {
+        const mensajePrincipal = texto.substring(0, nota);
+        const notaHTML = texto.substring(nota);
+
+        messageEl.textContent = mensajePrincipal;
+        messageEl.insertAdjacentHTML('beforeend', notaHTML);
+    } else {
+        messageEl.textContent = texto;
+    }
+}
+  
   function crearCampos(cantidad, nombresPrevios = []) {
     namesEl.replaceChildren();
     for (let i = 1; i <= cantidad; i++) {
@@ -297,7 +310,17 @@ const RSVP_TOKEN = new URLSearchParams(window.location.search).get('token') || '
     submitEl.disabled = true; submitEl.textContent = 'Guardando…'; mostrarMensaje('');
     try {
       const resultado = await llamarAPI({ action: 'guardarRespuesta', decision: decision.value, nombres });
-      mostrarMensaje((resultado.mensaje || 'Tu respuesta quedó guardada.') + '<span style="display:block;font-size:0.85em;margin-top:6px;opacity:0.85;font-weight:normal;">Nota: Si tus planes cambian o necesitas modificar tus acompañantes, puedes editar tu respuesta aquí mismo.</span>', false);
+      const nota = decision.value === 'asistire'
+    ? 'Nota: Si tus planes cambian o necesitas modificar tus acompañantes, puedes editar tu respuesta aquí mismo.'
+    : 'Nota: Si tus planes cambian, puedes editar tu respuesta aquí mismo.';
+
+mostrarMensaje(resultado.mensaje || 'Tu respuesta quedó guardada.', false);
+
+const notaEl = document.createElement('span');
+notaEl.className = 'rsvp-note';
+notaEl.textContent = nota;
+
+document.getElementById('rsvpMessage').appendChild(notaEl);
       submitEl.textContent = 'Respuesta guardada'; submitEl.disabled = false;
       if (decision.value === 'no_asistire') { namesEl.replaceChildren(); panelEl.hidden = true; }
     } catch (error) {
