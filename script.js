@@ -223,7 +223,6 @@ const RSVP_TOKEN = new URLSearchParams(window.location.search).get('token') || '
     }
 }
   
-  }
   function crearCampos(cantidad, nombresPrevios = []) {
     namesEl.replaceChildren();
     for (let i = 1; i <= cantidad; i++) {
